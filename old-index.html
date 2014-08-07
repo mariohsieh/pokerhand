@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+	<title>pokerhand</title>
+</head>
+<body>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+	<script>
+		// constructor function
+		function Game() {
+			var SUITS = ['C', 'D', 'H', 'S'];
+			
+			this.start = function() {
+				this.makeDeck();
+				this.shuffleDeck();
+				this.first_player = new Player();
+			  this.second_player = new Player();
+				this.first_player.hand = new Hand(this.dealCard(5));
+				this.second_player.hand = new Hand(this.dealCard(5));
+			}
+			
+			this.makeDeck = function() {
+			  this.deck = [];
+				for (var i=1;i<14;i++) {
+					for (suit in SUITS) 
+						this.deck.push({
+							suit: SUITS[suit],
+							value: i
+						});
+				}
+			}
+			
+			this.shuffleDeck = function() {
+				this.deck = _.shuffle(this.deck);
+			}
+			
+			this.dealCard = function(num) {
+				// pop shift
+				
+				var hand = [];
+				for (var i=0;i<num;i++) {
+					hand.push(this.deck.pop());
+				}
+				return hand;
+			}		
+				
+				
+			this.compareHands = function() {
+				var firstPlayerResult = this.first_player.hand.result,
+						secondPlayerResult = this.second_player.hand.result;
+						
+				if (firstPlayerResult > secondPlayerResult) {
+					return this.first_player;
+				}
+				else if (firstPlayerResult < secondPlayerResult) {
+					return this.second_player;
+				}
+			}	
+		}
+
+		function Player() {
+		}
+
+		function Hand(cards) {
+			this.cards = cards;
+			
+			this.result = function() {
+				return this.is_flush ? 1 : 0;
+			}
+			
+			this.is_flush = function() {
+				var suits = _.pluck(this.cards, 'suit');
+				return _.every(suits, function(suit) {
+				  return suit === suits[0];
+				});
+			}
+		}
+
+		var newGame = new Game();
+		newGame.start();
+	</script>
+</body>
+</html>
