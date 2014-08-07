@@ -39,22 +39,45 @@ function Player(name) {
 	this.name = name;
 }
 
-// poker hand calculator function
+// determine poker hand function
 function handCalculate(obj) {
 	var hand = obj;
-
 	var suits = [];
 	var values = [];
+	var score;
 
+	// store suits and values into arrays
 	for (prop in hand) {
 		suits.push(hand[prop].suit);
 		values.push(hand[prop].value);
 	}
+	// sort values
+	values.sort(function(a,b) {return a-b});
+	console.log(values);
 
-	//console.log(suits, values);
+	// check matched values hands - 4-of-a-kind, trips, 2-pair, 1 pair
+	function matchedValues() {
+		var tally = 0;
+		for (var i=0;i<values.length-1;i++) {
+			//console.log(values[i], values[i+1]);
+			if (values[i] == values[i+1])
+				tally++;
+		}
+		//console.log(tally);
+		
+		
+		
+		if (tally==3)
+			return 8;	// four-of-a-kind
+		else if (tally==2)
+			return 4;	// trips
+		else if (tally==1)
+			// code to test for 2-pair/1 pair
+		else
+			return 1	// high card
+	}
 
-
-	// check if all suits are the same
+	// check flush
 	function isFlush() {
 		for (var i=0;i<suits.length-1;i++) {
 			if (suits[i] !== suits[i+1])
@@ -63,9 +86,30 @@ function handCalculate(obj) {
 		return true;
 	}
 	
+	// check straight
+	function isStraight() {
+		console.log(values);
+		
+		// Ace-high straight check
+		value = values[4]-values[3]+(values[2]-values[1])-values[0];
+		console.log(value);
+		if (value == 1)
+			return true;
+		else {
+			// loop to check if difference is 1 between cards
+			for (var i=0;i<values.length-1;i++) {
+				if ((values[i+1]-values[i]) !== 1)
+					return false;
+			}
+			return true;
+		}
+	}
+
+	// return a score for each type of hand
+	//if (isStraight() && isFlush)
+		//return 9;	// straight flush
 	
-	
-	return isFlush();
+	return matchedValues();
 }
 
 // game logic constructor
@@ -83,11 +127,11 @@ function gameStart() {
 
 /* for testing */
 	player1.hand = [
-		{"suit": "Diamond", "value": "1"},
-		{"suit": "Diamond", "value": "2"},
-		{"suit": "Diamond", "value": "3"},
-		{"suit": "Diamond", "value": "4"},
-		{"suit": "Diamond", "value": "5"}
+		{"suit": "Diamond", "value": 5},
+		{"suit": "Diamond", "value": 5},
+		{"suit": "Diamond", "value": 9},
+		{"suit": "Diamond", "value": 1},
+		{"suit": "Diamond", "value": 5}
 	];
 	
 	console.log(player1.hand);
