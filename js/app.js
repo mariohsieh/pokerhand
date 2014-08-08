@@ -44,7 +44,6 @@ function handCalculate(obj) {
 	var hand = obj;
 	var suits = [];
 	var values = [];
-	var score;
 
 	// store suits and values into arrays
 	for (prop in hand) {
@@ -53,28 +52,47 @@ function handCalculate(obj) {
 	}
 	// sort values
 	values.sort(function(a,b) {return a-b});
-	console.log(values);
+	//console.log(values);
 
-	// check trips, 2-pair, 1-pair and high card
-	function isTrips() {
-		for (var i=0;i<3;i++) {
-			console.log(values[i], values[i+1], values[i+2]);
-			if (values[i] == values[i+1] && values[i+1] == values[i+2])
-				return true;
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// check for different hands
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	// check 4-of-a-kind
+	function is4ofaKind() {
+		for (var i=0;i<2;i++) {
+			if (values[i] == values[i+1] &&
+					values[i+1] == values[i+2] &&
+					values[i+2] == values[i+3])
+			return true;
 		}
 		return false;
 	}
 
+	
+	// check full house/trips
+	function isFullHouse() {
+		for (var i=0;i<3;i++) {
+			//console.log(values[i], values[i+1], values[i+2]);
+			if (values[i] == values[i+1] && values[i+1] == values[i+2]) {
+				if (values[0] == values[1] || values[3] == values[4])
+					return true;	// full house
+				else
+					return "trips"; // trips
+			}
+		}
+		return false;
+	}
 
-	// check 4-of-a-kind
-	function is4ofaKind() {
+	// check 2-pair, 1-pair, high card
+	function isPair(num) {
+		var goal = num--;
 		var tally = 0;
-		for (var i=0;i<values.length-1;i++) {
-			//console.log(values[i], values[i+1]);
+		for (var i=0;i<4;i++) {
 			if (values[i] == values[i+1])
 				tally++;
 		}
-		if (tally==3)
+			if (tally == goal)
 			return true;
 		else
 			return false;
@@ -91,12 +109,14 @@ function handCalculate(obj) {
 	
 	// check straight
 	function isStraight() {
-		console.log(values);
-		
 		// Ace-high straight check
-		value = values[4]-values[3]+(values[2]-values[1])-values[0];
-		console.log(value);
-		if (value == 1)
+		//value = values[4]-values[3]+(values[2]-values[1])-values[0];
+		//console.log(value);
+		if (values[0] == 1 &&
+				values[1] == 10 &&
+				values[2] == 11 &&
+				values[3] == 12 &&
+				values[4] == 13)
 			return true;
 		else {
 			// loop to check if difference is 1 between cards
@@ -108,11 +128,28 @@ function handCalculate(obj) {
 		}
 	}
 
-	// return a score for each type of hand
-	//if (isStraight() && isFlush)
-		//return 9;	// straight flush
-	
-	return isTrips();
+	// return a score for each type of hand	
+	this.getScore = function() {	
+		if (isFlush() && isStraight())
+			return {"score": 9, "type": "straight flush"};	// straight flush
+		else if (is4ofaKind())
+			return {"score": 8, "type": "4 of a kind"};	// 4-of-a-kind
+		else if (isFullHouse() == true)
+			return {"score": 7, "type": "full house"};	// full house
+		else if (isFlush())
+			return {"score": 6, "type": "flush"};	// flush
+		else if (isStraight())
+			return {"score": 5, "type": "straight"};	// straight
+		else if (isFullHouse() == "trips")
+			return {"score": 4, "type": "trips"};	// trips
+		else if (isPair(2))
+			return {"score": 3, "type": "two pair"};	// two pair
+		else if (isPair(1))
+			return {"score": 2, "type": "one pair"};	// one pair
+		else
+			return {"score": 1, "type": "high card"};	// high card
+	}
+	return this.getScore();
 }
 
 // game logic constructor
@@ -125,23 +162,24 @@ function gameStart() {
 	cards.makeDeck();
 	cards.shuffleDeck();
 	
-	//player1.hand = cards.dealHand(5);
+	player1.hand = cards.dealHand(5);
 	//player2.hand = cards.dealHand(5);
 
-/* for testing */
+/* for testing 
 	player1.hand = [
-		{"suit": "Diamond", "value": 2},
-		{"suit": "Diamond", "value": 5},
-		{"suit": "Diamond", "value": 13},
-		{"suit": "Diamond", "value": 9},
-		{"suit": "Diamond", "value": 6}
+		{"suit": "Heart", "value": 8},
+		{"suit": "Heart", "value": 6},
+		{"suit": "Spade", "value": 12},
+		{"suit": "Heart", "value": 4},
+		{"suit": "Heart", "value": 7}
 	];
-	
+*/	
 	console.log(player1.hand);
 	//console.log(player2.hand);
 	
 	player1.score = handCalculate(player1.hand);
-	//player2.score = handCalculate(player2.hand);
+	//player2.getScore = handCalculate(player2.hand);
+	
 	console.log(player1.score);
 	//console.log(player2.score);
 }
