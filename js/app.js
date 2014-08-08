@@ -55,26 +55,29 @@ function handCalculate(obj) {
 	values.sort(function(a,b) {return a-b});
 	console.log(values);
 
-	// check matched values hands - 4-of-a-kind, trips, 2-pair, 1 pair
-	function matchedValues() {
+	// check trips, 2-pair, 1-pair and high card
+	function isTrips() {
+		for (var i=0;i<3;i++) {
+			console.log(values[i], values[i+1], values[i+2]);
+			if (values[i] == values[i+1] && values[i+1] == values[i+2])
+				return true;
+		}
+		return false;
+	}
+
+
+	// check 4-of-a-kind
+	function is4ofaKind() {
 		var tally = 0;
 		for (var i=0;i<values.length-1;i++) {
 			//console.log(values[i], values[i+1]);
 			if (values[i] == values[i+1])
 				tally++;
 		}
-		//console.log(tally);
-		
-		
-		
 		if (tally==3)
-			return 8;	// four-of-a-kind
-		else if (tally==2)
-			return 4;	// trips
-		else if (tally==1)
-			// code to test for 2-pair/1 pair
+			return true;
 		else
-			return 1	// high card
+			return false;
 	}
 
 	// check flush
@@ -109,7 +112,7 @@ function handCalculate(obj) {
 	//if (isStraight() && isFlush)
 		//return 9;	// straight flush
 	
-	return matchedValues();
+	return isTrips();
 }
 
 // game logic constructor
@@ -127,11 +130,11 @@ function gameStart() {
 
 /* for testing */
 	player1.hand = [
+		{"suit": "Diamond", "value": 2},
 		{"suit": "Diamond", "value": 5},
-		{"suit": "Diamond", "value": 5},
+		{"suit": "Diamond", "value": 13},
 		{"suit": "Diamond", "value": 9},
-		{"suit": "Diamond", "value": 1},
-		{"suit": "Diamond", "value": 5}
+		{"suit": "Diamond", "value": 6}
 	];
 	
 	console.log(player1.hand);
