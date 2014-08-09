@@ -30,7 +30,7 @@ header {
 main h3 {
   font-size: 1.5em; }
 main .infoBox button {
-  background-color: #424242;
+  background-color: #000;
   border-radius: 100%;
   width: 75px;
   height: 75px;

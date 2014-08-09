@@ -287,7 +287,3 @@ angular.module("allFactories", [])
 			}	
 		}
 	});
-
-
-
-

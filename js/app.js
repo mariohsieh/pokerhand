@@ -1,4 +1,5 @@
 angular.module("pokerhandApp", [
 	"allFactories",
-	"allControllers"
+	"allControllers",
+	"allDirectives"
 ])
