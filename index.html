@@ -1,9 +1,46 @@
 <!doctype html>
-<html>
+<html ng-app="pokerhandApp">
 <head>
 	<title>compare pokerhand</title>
+	<!-- css links -->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-	<script src="js/app.js"></script>
+<body ng-controller="mainCtrl">
+	<header>pokerhand</header>
+	<main>
+		<section class="p1Box">
+				<article>
+					<!-- player 1 name -->
+					<h3>player 1</h3>
+				</article>
+				<article>
+					<!-- player 1 hand -->
+					<ul>
+						<li></li>
+					</ul>
+				</article>
+		</section>
+		<section class="infoBox"> <!-- game info -->
+			<button>deal</button>
+		</section>
+		<section class="p2Box">
+			<article>
+				<!-- player 2 hand -->
+			</article>
+			<article>
+				<!-- player 2 info -->
+				<h3>player 2</h3>
+			</article>
+		</section>
+	</main>
+	<footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+		<!--<script src="js/script.js"></script>-->
+		<script src="js/app.js"></script>
+		<script src="js/controller.js"></script>
+		<script src="js/factory.js"></script>
+	</footer>
 </body>
 </html>

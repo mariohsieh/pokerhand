@@ -1,0 +1,39 @@
+.center {
+  margin: 0 auto; }
+
+.textCenter {
+  text-align: center; }
+
+.pointer {
+  cursor: pointer; }
+
+.overlay {
+  position: fixed;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85); }
+
+html, body {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 100%; }
+
+header {
+  background-color: #424242;
+  font-size: 1.75em;
+  color: #fff;
+  text-align: center;
+  padding: .25em; }
+
+main h3 {
+  font-size: 1.5em; }
+main .infoBox button {
+  background-color: #424242;
+  border-radius: 100%;
+  width: 75px;
+  height: 75px;
+  border: none;
+  color: #fff;
+  font-size: 1.2em; }

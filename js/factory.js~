@@ -1,0 +1,49 @@
+angular.module("factories", [])
+	// cards
+	.factory("Cards", function() {
+		return function() {
+			// create all cards with double for loop
+			this.makeDeck = function() {
+				var suits = ['Club', 'Diamond', 'Heart', 'Spade'];
+				this.deck = [];
+				for (suit in suits) {
+					for (var i=2;i<15;i++)
+						this.deck.push({suit: suits[suit], value: i});
+				}
+			}
+			
+			// shuffles the cards
+			this.shuffleDeck = function() {
+				var newDeck = [];
+
+				// loop to select random cards and adding to new deck
+				do {
+					var randomIndex = Math.floor(Math.random()*this.deck.length);
+					var randomCard = this.deck[randomIndex];
+					this.deck.splice(randomIndex,1);
+					newDeck.push(randomCard);
+				} while (this.deck.length > 0 );
+				this.deck = newDeck; // set new deck with shuffled cards
+			}
+
+			// deals the number of cards set by the parameter
+			this.dealHand = function(num) {
+
+				var hand = [];
+				for (var i=0;i<num;i++) {
+					hand.push(this.deck.pop());
+				}
+				return hand;
+			}
+		}
+	})
+	// player 
+	.factory("Player", function() {
+		return function (name) {
+			this.name = name;
+		}
+	});
+
+
+
+

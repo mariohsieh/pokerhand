@@ -1,0 +1,55 @@
+//// global variables ////
+$darkGrey: #424242;
+
+
+//// import files ////
+@import "global";
+
+
+//// document styling ////
+html, body {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 100%; 
+}
+
+header {
+	background-color: $darkGrey;
+	font-size: 1.75em;
+	color: #fff;
+	text-align: center;
+	padding: .25em;
+}
+
+main {
+
+	h3 {
+		font-size: 1.5em;
+	}
+
+	section {
+
+	}
+	
+	.infoBox {
+		button {
+			background-color: $darkGrey;
+			border-radius: 100%;
+			width: 75px;
+			height: 75px;
+			border: none;
+			color: #fff;
+			font-size: 1.2em;
+		}
+		button:active {
+			//background-color: red;
+		}
+	}
+}
+
+
+
+
+
+
+
+
