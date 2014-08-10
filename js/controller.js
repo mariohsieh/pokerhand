@@ -3,18 +3,18 @@ angular.module("allControllers", [])
 	.controller("mainCtrl", function($scope, Card, Player, CalcHand, CompareHand) {
 
 		// game logic
-		function gameStart() {
-
-			var player1 = new Player("alpha");
-			var player2 = new Player("omega");
+		$scope.gameStart = function() {
+			
+			var p1 = new Player("alpha");
+			var p2 = new Player("omega");
 
 			var cards = new Card();
 			cards.makeDeck();
 			cards.shuffleDeck();
 			
-			player1.hand = cards.dealHand(5);
-			player2.hand = cards.dealHand(5);
-
+			p1.hand = cards.dealHand(5);
+			p2.hand = cards.dealHand(5);
+			
 		/* for testing 
 			player1.hand = [
 				{"suit": "Heart", "value": 3},
@@ -32,18 +32,26 @@ angular.module("allControllers", [])
 			];	 
 		*/
 		
-			console.log(player1.hand);
-			console.log(player2.hand);
+			console.log(p1.hand);
+			console.log(p2.hand);
 			
-			player1.score = new CalcHand(player1.hand);
-			player2.score = new CalcHand(player2.hand);
-			console.log(player1.score);
-			console.log(player2.score);
-
-			var compareHand = new CompareHand(player1.score, player2.score);
+			p1.score = new CalcHand(p1.hand);
+			p2.score = new CalcHand(p2.hand);
+			console.log(p1.score);
+			console.log(p2.score);
+			
+			var compareHand = new CompareHand(p1.score, p2.score);
+			
+			$scope.p1 = p1;
+			console.log(p1.score.score);
+			//$scope.p2 = p2;
+			
 		}
 
 		// start game
-		gameStart();
+		//gameStart();
+
+		// testing 
+		$scope.test = {'name': 'gamma', 'score': 10};
 
 	});

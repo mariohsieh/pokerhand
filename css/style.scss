@@ -1,6 +1,6 @@
 //// global variables ////
 $darkGrey: #424242;
-
+$green: #3ADF00;
 
 //// import files ////
 @import "global";
@@ -41,7 +41,8 @@ main {
 			font-size: 1.2em;
 		}
 		button:active {
-			//background-color: red;
+			background-color: $green;
+			color: #000;
 		}
 	}
 }

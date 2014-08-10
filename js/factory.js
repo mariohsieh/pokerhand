@@ -166,7 +166,7 @@ angular.module("allFactories", [])
 			}
 		
 			getScore();
-			return {"hand": values,"score": score,"type": type};
+			return {"values": values,"score": score,"type": type};
 		}
 	})
 	

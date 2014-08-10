@@ -37,3 +37,6 @@ main .infoBox button {
   border: none;
   color: #fff;
   font-size: 1.2em; }
+main .infoBox button:active {
+  background-color: #3adf00;
+  color: #000; }
