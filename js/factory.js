@@ -182,12 +182,12 @@ angular.module("allFactories", [])
 			// compare trips
 			function compareTrips() {
 				for (var i=4;i>1;i--) {
-					if (obj1.hand[i] == obj1.hand[i-1] &&
-							obj1.hand[i-1] == obj1.hand[i-2])
-						trips1 = obj1.hand[i];
-					if (obj2.hand[i] == obj2.hand[i-1] &&
-							obj2.hand[i-1] == obj2.hand[i-2])
-						trips2 = obj2.hand[i];
+					if (obj1.values[i] == obj1.values[i-1] &&
+							obj1.values[i-1] == obj1.values[i-2])
+						trips1 = obj1.values[i];
+					if (obj2.values[i] == obj2.values[i-1] &&
+							obj2.values[i-1] == obj2.values[i-2])
+						trips2 = obj2.values[i];
 				}
 				if (trips1 > trips2)
 					return console.log("player 1 wins");
@@ -201,10 +201,10 @@ angular.module("allFactories", [])
 				var pair2 = [];
 				
 				for (var i=4;i>0;i--) {
-					if (obj1.hand[i] == obj1.hand[i-1])
-						pair1.push(obj1.hand[i]);
-					if (obj2.hand[i] == obj2.hand[i-1])
-						pair2.push(obj2.hand[i]);
+					if (obj1.values[i] == obj1.values[i-1])
+						pair1.push(obj1.values[i]);
+					if (obj2.values[i] == obj2.values[i-1])
+						pair2.push(obj2.values[i]);
 				}
 				if (pair1[0] < pair2[0])
 					return console.log("player 2 wins");
@@ -219,10 +219,10 @@ angular.module("allFactories", [])
 			// compare single pair
 			function comparePair() {
 				for (var i=4;i>0;i--) {
-					if (obj1.hand[i] == obj1.hand[i-1])
-						var pair1 = obj1.hand[i];
-					if (obj2.hand[i] == obj2.hand[i-1])
-						var pair2 = obj2.hand[i];
+					if (obj1.values[i] == obj1.values[i-1])
+						var pair1 = obj1.values[i];
+					if (obj2.values[i] == obj2.values[i-1])
+						var pair2 = obj2.values[i];
 				}
 				if (pair1 > pair2)
 					return console.log("player 1 wins");
@@ -232,16 +232,16 @@ angular.module("allFactories", [])
 			}
 			
 			function compareCard(num) {
+				//console.log(obj1.values, obj2.values);
 				for (var i=4;i>num;i--) {
-					if (obj1.hand[i] < obj2.hand[i]) {
-						//console.log(obj1.hand[i] , obj2.hand[i])
+					if (obj1.values[i] < obj2.values[i]) {
 						return console.log("player 2 wins");
 					}
-					if (obj1.hand[i] > obj2.hand[i]) {
-						//console.log(obj1.hand[i] , obj2.hand[i])
+					if (obj1.values[i] > obj2.values[i]) {
 						return console.log("player 1 wins");
 					}	
 				}
+			
 				return console.log("tie game");
 			};
 

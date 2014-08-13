@@ -1,57 +1,50 @@
 angular.module("allControllers", [])
 
 	.controller("mainCtrl", function($scope, Card, Player, CalcHand, CompareHand) {
-
+		
 		// game logic
 		$scope.gameStart = function() {
-			
-			var p1 = new Player("alpha");
-			var p2 = new Player("omega");
 
-			var cards = new Card();
+			$scope.p1 = new Player("alpha");
+			$scope.p2 = new Player("omega");
+
+			cards = new Card();
 			cards.makeDeck();
 			cards.shuffleDeck();
 			
-			p1.hand = cards.dealHand(5);
-			p2.hand = cards.dealHand(5);
-			
+			$scope.p1.hand = cards.dealHand(5);
+			$scope.p2.hand = cards.dealHand(5);
+
 		/* for testing 
-			player1.hand = [
-				{"suit": "Heart", "value": 3},
-				{"suit": "Spade", "value": 3},
-				{"suit": "Spade", "value": 10},
-				{"suit": "Heart", "value": 3},
-				{"suit": "Club", "value": 14}
+			$scope.p1.hand = [
+				{"suit": "Heart", "value": 2},
+				{"suit": "Spade", "value": 8},
+				{"suit": "Spade", "value": 9},
+				{"suit": "Heart", "value": 11},
+				{"suit": "Club", "value": 12}
 			];
-			player2.hand = [
-				{"suit": "Diamond", "value": 5},
-				{"suit": "Heart", "value": 14},
-				{"suit": "Spade", "value": 5},
-				{"suit": "Diamond", "value": 5},
+			$scope.	p2.hand = [
+				{"suit": "Diamond", "value": 4},
+				{"suit": "Heart", "value": 5},
+				{"suit": "Spade", "value": 6},
+				{"suit": "Diamond", "value": 11},
 				{"suit": "Heart", "value": 13}
 			];	 
 		*/
 		
-			console.log(p1.hand);
-			console.log(p2.hand);
+			console.log($scope.p1.hand);
+			console.log($scope.p2.hand);
 			
-			p1.score = new CalcHand(p1.hand);
-			p2.score = new CalcHand(p2.hand);
-			console.log(p1.score);
-			console.log(p2.score);
-			
-			var compareHand = new CompareHand(p1.score, p2.score);
-			
-			$scope.p1 = p1;
-			console.log(p1.score.score);
-			//$scope.p2 = p2;
-			
+			$scope.p1.info = new CalcHand($scope.p1.hand);
+			$scope.p2.info = new CalcHand($scope.p2.hand);
+			console.log($scope.p1.info);
+			console.log($scope.p2.info);
+
+			var compareHand = new CompareHand($scope.p1.info, $scope.p2.info);
+
 		}
 
 		// start game
-		//gameStart();
-
-		// testing 
-		$scope.test = {'name': 'gamma', 'score': 10};
-
+		$scope.gameStart();
 	});
+
