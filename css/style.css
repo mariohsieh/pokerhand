@@ -7,6 +7,9 @@
 .pointer {
   cursor: pointer; }
 
+.inlineBlock {
+  display: inline-block; }
+
 .overlay {
   position: fixed;
   display: block;
@@ -29,14 +32,25 @@ header {
 
 main h3 {
   font-size: 1.5em; }
+main section > article {
+  display: inline-block; }
+  main section > article .hand {
+    border-radius: 15px;
+    border: 1px solid #000;
+    width: 200px;
+    height: 300px;
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 2.1em; }
 main .infoBox button {
   background-color: #000;
   border-radius: 100%;
   width: 75px;
   height: 75px;
+  padding: 0;
   border: none;
   color: #fff;
   font-size: 1.2em; }
 main .infoBox button:active {
-  background-color: #3adf00;
+  background-color: #31b404;
   color: #000; }

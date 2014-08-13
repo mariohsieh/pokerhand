@@ -1,6 +1,6 @@
 //// global variables ////
 $darkGrey: #424242;
-$green: #3ADF00;
+$green: #31B404;
 
 //// import files ////
 @import "global";
@@ -21,14 +21,24 @@ header {
 }
 
 main {
-
 	h3 {
 		font-size: 1.5em;
 	}
-
 	section {
-
-	}
+		//text-align: center;
+		> article {
+			display: inline-block;
+			.hand {
+				border-radius: 15px;
+				border: 1px solid #000;
+				width: 200px;
+				height: 300px;
+				margin: 5px;
+				padding: 5px 10px;
+				font-size: 2.1em;
+			}
+		}
+	}	
 	
 	.infoBox {
 		button {
@@ -36,6 +46,7 @@ main {
 			border-radius: 100%;
 			width: 75px;
 			height: 75px;
+			padding: 0;
 			border: none;
 			color: #fff;
 			font-size: 1.2em;

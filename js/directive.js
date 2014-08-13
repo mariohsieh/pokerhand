@@ -5,7 +5,10 @@ angular.module("allDirectives", [])
 		function link(scope, elem, attr) {
 				
 			elem.on('click', function() {
+				
+				//start game on click
 				scope.gameStart();
+				console.log(scope.p1.hand);	
 			});		
 		}
 		
@@ -14,21 +17,27 @@ angular.module("allDirectives", [])
 			link: link
 		}
 	})
-	
+
 	
 	.directive("displayCards", function() {
 		
-		//function link(scope, elem, attr) {
-			//console.log(scope.p1);
-		//}
+		function link(scope, elem, attr) {
+			console.log(scope.hand);
+/*		
+			scope.$watch('scope.p1.hand', function(newValue, oldValue) {
+				//console.log(newValue);
+			});
+*/			
+		}
 
-		
 		return {
 			restrict: 'E',
+			replace: true,
 			scope: {
-				hand: '='
+				hand: '=',
 			},
-			template: '{{hand}}'
-			//link: link
+			template: '<ul><li class="inlineBlock hand" ng-repeat="card in hand"><span>{{card.value}}</span></li></ul>',
+			//templateUrl: 'views/cardDisplay.html',
+			link: link
 		}
 	});
