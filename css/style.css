@@ -23,6 +23,12 @@ html, body {
   font-family: 'Ubuntu Mono', monospace;
   font-size: 100%; }
 
+.red {
+  color: red; }
+
+.black {
+  color: black; }
+
 header {
   background-color: #424242;
   font-size: 1.75em;

@@ -46,28 +46,33 @@ angular.module("allDirectives", ["ngSanitize"])
 				}
 			}
 			
-			function suitAndColor(suit) {
-				switch(suit) {
+			function suitAndColor(obj) {
+				switch(obj.suit) {
 					case 'Club':
-						suit = '&clubs;';
-						return suit;
+						obj.suit = '&clubs;';
+						obj.color = 'black';
+						return obj;
 					case 'Diamond':
-						suit = '&diams;';
-						return suit;
+						obj.suit = '&diams;';
+						obj.color = 'red';
+						return obj;
 					case 'Heart':
-						suit = '&hearts;';
-						return suit;
+						obj.suit = '&hearts;';
+						obj.color = 'red';
+						return obj;
 					case 'Spade':
-						suit = '&spades;';
-						return suit;
+						obj.suit = '&spades;';
+						obj.color = 'black';
+						return obj;
 				}
 			}
 
 			for (card in scope.hand) {
 				scope.hand[card].value = faceCards(scope.hand[card].value);
 				//console.log(scope.hand[card].value);
-				scope.hand[card].suit = suitAndColor(scope.hand[card].suit);
-				//console.log(scope.hand[card].suit);
+				//scope.hand[card].suit = suitAndColor(scope.hand[card].suit);
+				scope.hand[card] = suitAndColor(scope.hand[card]);
+				//console.log(scope.hand[card]);
 			}
 			
 		}
@@ -78,8 +83,8 @@ angular.module("allDirectives", ["ngSanitize"])
 			scope: {
 				hand: '=',
 			},
-			template: '<ul><li class="inlineBlock hand" ng-repeat="card in hand"><p>{{card.value}}</p><p ng-bind-html="card.suit">{{card.suit}}</p></li></ul>',
-			//templateUrl: 'views/cardDisplay.html',
+			//template: '<ul><li class="hand inlineBlock" ng-repeat="card in hand"><div class="inlineBlock {{card.color}}"><p>{{card.value}}</p><p ng-bind-html="card.suit">{{card.suit}}</p></div></li></ul>',
+			templateUrl: 'views/cardDisplay.html',
 			link: link
 		}
 	});

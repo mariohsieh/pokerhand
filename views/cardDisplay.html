@@ -1,7 +1,8 @@
 <ul>
-	<li class="inlineBlock hand" ng-repeat="card in hand">
-		<p>{{card.value}}</p>
-		<!--<p>suit</p>
-		<p>{{card.value}}</p>--> 
+	<li class="hand inlineBlock" ng-repeat="card in hand">
+		<div class="inlineBlock {{card.color}}">
+			<p>{{card.value}}</p>
+			<p ng-bind-html="card.suit">{{card.suit}}</p>
+		</div>
 	</li>
 </ul>
