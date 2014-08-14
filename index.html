@@ -10,27 +10,33 @@
 <body ng-controller="mainCtrl">
 	<header>pokerhand</header>
 	<main class="center">
-		<section class="p1Box">
-				<article>
-					<!-- player 1 name -->
-					<h3>player 1</h3>
-				</article><!--
-				--><article>
-					<!-- player 1 hand -->
-					<display-cards hand='p1.hand'></display-cards>
-				</article>
+		<section class="p1Box"><!--
+			--><article class="playerDisplay">
+				<!-- player 1 name -->
+				<h3>player</h3>
+				<h2 class="textCenter">1</h2>
+			</article><!--
+			--><article>
+				<!-- player 1 hand -->
+				<display-cards hand='p1.hand'></display-cards>
+			</article>
 		</section>
 		<section class="infoBox"> <!-- game info -->
+			<div class="checkmark" ng-class="{'winIcon': winner == true}">&#x2713;</div>
+			<h2>{{p1.info.type}}</h2>
 			<button class="center pointer" data-deal-cards>deal</button>
+			<h2>{{p2.info.type}}</h2>
+			<div class="checkmark" ng-class="{'winIcon': winner == false}">&#x2713;</div>
 		</section>
 		<section class="p2Box">
 			<article>
 				<!-- player 2 hand -->
 				<display-cards hand='p2.hand'></display-cards>
 			</article><!--
-			--><article>
+			--><article class="playerDisplay">
 				<!-- player 2 info -->
-				<h3>player 2</h3>
+				<h3>player</h3>
+				<h2 class="textCenter">2</h2>
 			</article>
 		</section>
 	</main>

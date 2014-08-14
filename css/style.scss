@@ -12,6 +12,14 @@ html, body {
   font-size: 100%; 
 }
 
+h2 {
+	font-size: 3.0em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
 .red {
 	color: red;
 }
@@ -29,13 +37,12 @@ header {
 }
 
 main {
-	h3 {
-		font-size: 1.5em;
-	}
 	section {
-		//text-align: center;
+		text-align: center;
 		> article {
+			text-align: left;
 			display: inline-block;
+		
 			.hand {
 				border-radius: 15px;
 				border: 1px solid #000;
@@ -45,15 +52,54 @@ main {
 				padding: 5px 10px;
 				font-size: 2.1em;
 			}
+			
+			.cardTop {
+				vertical-align: top;
+			}
+			
+			.cardBottom {
+				-moz-transform: rotate(180deg);
+				-o-transform: rotate(180deg);
+				-webkit-transform: rotate(180deg);
+				transform: rotate(180deg);
+				vertical-align: text-bottom;
+				height: 100%;
+				float: right;
+			}
 		}
+		.playerDisplay{
+			padding-top: 75px;
+			vertical-align: top;
+
+		}		
 	}	
 	
 	.infoBox {
+		* {
+			display: inline-block;
+			margin: 0 25px;
+			vertical-align: top;
+			height: 75px;
+		}
+		.checkmark {
+			border-radius: 100%;
+			width: 75px;
+			color: #fff;
+			background-color: green;
+			font-size: 4.5em;
+			visibility: hidden;
+		}
+		.winIcon {
+			visibility: visible;
+		}
+		h2 {
+			padding-top: 10px;
+			vertical-align: middle;
+		}
 		button {
 			background-color: #000;
 			border-radius: 100%;
 			width: 75px;
-			height: 75px;
 			padding: 0;
 			border: none;
 			color: #fff;

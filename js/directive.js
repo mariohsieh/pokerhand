@@ -5,7 +5,6 @@ angular.module("allDirectives", ["ngSanitize"])
 		function link(scope, elem, attr) {
 				
 			elem.on('click', function() {
-				//start game on click
 				scope.gameStart();
 			});		
 		}
@@ -74,7 +73,7 @@ angular.module("allDirectives", ["ngSanitize"])
 				scope.hand[card] = suitAndColor(scope.hand[card]);
 				//console.log(scope.hand[card]);
 			}
-			
+
 		}
 
 		return {
@@ -83,7 +82,7 @@ angular.module("allDirectives", ["ngSanitize"])
 			scope: {
 				hand: '=',
 			},
-			//template: '<ul><li class="hand inlineBlock" ng-repeat="card in hand"><div class="inlineBlock {{card.color}}"><p>{{card.value}}</p><p ng-bind-html="card.suit">{{card.suit}}</p></div></li></ul>',
+			//template: '<ul><li class="hand inlineBlock" ng-repeat="card in hand"><div class="cardTop inlineBlock {{card.color}}"><p>{{card.value}}</p><p ng-bind-html="card.suit">{{card.suit}}</p></div><div class="cardBottom inlineBlock {{card.color}}"><p>{{card.value}}</p><p ng-bind-html="card.suit">{{card.suit}}</p></div></li></ul>',
 			templateUrl: 'views/cardDisplay.html',
 			link: link
 		}

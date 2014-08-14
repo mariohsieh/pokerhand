@@ -19,7 +19,7 @@ angular.module("allControllers", [])
 			$scope.p1.hand = [
 				{"suit": "Heart", "value": 2},
 				{"suit": "Spade", "value": 8},
-				{"suit": "Spade", "value": 9},
+				{"suit": "Spade", "value": 6},
 				{"suit": "Heart", "value": 11},
 				{"suit": "Club", "value": 12}
 			];
@@ -27,7 +27,7 @@ angular.module("allControllers", [])
 				{"suit": "Diamond", "value": 4},
 				{"suit": "Heart", "value": 5},
 				{"suit": "Spade", "value": 6},
-				{"suit": "Diamond", "value": 11},
+				{"suit": "Diamond", "value": 10},
 				{"suit": "Heart", "value": 13}
 			];	 
 		*/
@@ -40,7 +40,8 @@ angular.module("allControllers", [])
 			console.log($scope.p1.info);
 			console.log($scope.p2.info);
 
-			var compareHand = new CompareHand($scope.p1.info, $scope.p2.info);
+		$scope.winner = CompareHand($scope.p1.info, $scope.p2.info);
+		//console.log($scope.winner);
 		}
 
 		// start game

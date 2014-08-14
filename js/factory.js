@@ -172,13 +172,13 @@ angular.module("allFactories", [])
 	
 	.factory("CompareHand", function() {
 		return function(obj1, obj2) {
+			// compare quads
 			function compareQuads() {
 				if (obj1.hand[2] > obj2.hand[2])
-					return console.log("player 1 wins");
+					return true;
 				else
-					return console.log("player 2 wins");
-			}
-			
+					return false;
+			}		
 			// compare trips
 			function compareTrips() {
 				for (var i=4;i>1;i--) {
@@ -190,9 +190,9 @@ angular.module("allFactories", [])
 						trips2 = obj2.values[i];
 				}
 				if (trips1 > trips2)
-					return console.log("player 1 wins");
+					return true;
 				if (trips2 > trips1)
-					return console.log("player 2 wins");
+					return false;
 				//compareCard(-1);
 			}
 			// compare two pairs
@@ -207,13 +207,13 @@ angular.module("allFactories", [])
 						pair2.push(obj2.values[i]);
 				}
 				if (pair1[0] < pair2[0])
-					return console.log("player 2 wins");
+					return false;
 				if (pair1[0] > pair2[0])
-					return console.log("player 1 wins");
+					return true;
 				if (pair1[1] < pair2[1])
-					return console.log("player 2 wins");
+					return false;
 				if (pair1[1] > pair2[1])
-					return console.log("player 1 wins");
+					return true;
 				compareCard(-1);
 			}
 			// compare single pair
@@ -225,20 +225,19 @@ angular.module("allFactories", [])
 						var pair2 = obj2.values[i];
 				}
 				if (pair1 > pair2)
-					return console.log("player 1 wins");
+					return true;
 				if (pair1 < pair2)
-					return console.log("player 2 wins");
+					return false;
 				compareCard(-1);
 			}
-			
+			// compare all cards
 			function compareCard(num) {
-				//console.log(obj1.values, obj2.values);
 				for (var i=4;i>num;i--) {
 					if (obj1.values[i] < obj2.values[i]) {
-						return console.log("player 2 wins");
+						return false;
 					}
 					if (obj1.values[i] > obj2.values[i]) {
-						return console.log("player 1 wins");
+						return true;
 					}	
 				}
 			
@@ -246,43 +245,47 @@ angular.module("allFactories", [])
 			};
 
 			// check for bigger hand, if tie, then go to tie breakers
-			if (obj1.score > obj2.score)
-				console.log("player 1 wins");
-			else if (obj1.score < obj2.score)
-				console.log("player 2 wins");
-			else {
+			if (obj1.score > obj2.score) {
+				//console.log("player 1 wins");
+				//return {'result': "player 1 wins"};
+				return true;
+			} else if (obj1.score < obj2.score) {
+				//console.log("player 2 wins");
+				//return {'result': "player 2 wins"};
+				return false;
+			} else {
 				//console.log("tie game");
 				// code for tie breaker
 				switch(obj1.score) {
 					case 9:
-						compareCard(3);
+						return compareCard(3);
 						break;
 					case 8:
-						compareQuads();
+						return compareQuads();
 						break;
 					case 7:
-						compareTrips();
+						return compareTrips();
 						break;
 					case 6:
-						compareCard(-1);
+						return compareCard(-1);
 						break;
 					case 5:
-						compareCard(3);
+						return compareCard(3);
 						break;
 					case 4:
-						compareTrips();
+						return compareTrips();
 						break;
 					case 3:
-						compare2pair();
+						return compare2pair();
 						break;
 					case 2:
-						comparePair();
+						return comparePair();
 						break;
 					case 1:
-						compareCard(-1);
-						break;				
+						return compareCard(-1);
+						//break;				
 					default:
-						console.log("tie game");
+						return "tie game";
 				}
 			}	
 		}
