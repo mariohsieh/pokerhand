@@ -62,8 +62,8 @@ angular.module("allDirectives", [])
 			scope: {
 				hand: '=',
 			},
-			template: '<ul><li class="inlineBlock hand" ng-repeat="card in hand"><span>{{card.value}}</span></li></ul>',
-			//templateUrl: 'views/cardDisplay.html',
+			//template: '<ul><li class="inlineBlock hand" ng-repeat="card in hand"><span>{{card.value}}</span></li></ul>',
+			templateUrl: 'views/cardDisplay.html',
 			link: link
 		}
 	});
