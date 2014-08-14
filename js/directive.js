@@ -1,17 +1,12 @@
 angular.module("allDirectives", ["ngSanitize"])
 
-	.directive("dealCards", function() {
-		
-		function link(scope, elem, attr) {
-				
-			elem.on('click', function() {
-				scope.gameStart();
-			});		
-		}
-		
+	.directive("dealButton", function() {
+
 		return {
-			restrict: 'A',
-			link: link
+			restrict: 'E',
+			replace: true,
+			template: "<button class='center pointer' ng-click='gameStart()'>deal</button>"
+			//link: link
 		}
 	})
 
@@ -20,12 +15,8 @@ angular.module("allDirectives", ["ngSanitize"])
 		
 		function link(scope, elem, attr) {
 			//console.log(scope.hand);
-/*		
-			scope.$watch('hand', function(newValue, oldValue) {
-				console.log(newValue, oldValue);
-				//hand = newValue;
-			});
-*/	
+		
+			// change face cards & Ace to letters
 			function faceCards(num) {
 				switch(num) {
 					case 11:
@@ -45,6 +36,7 @@ angular.module("allDirectives", ["ngSanitize"])
 				}
 			}
 			
+			// change to suit symbol and corresponding red/black colors
 			function suitAndColor(obj) {
 				switch(obj.suit) {
 					case 'Club':
@@ -66,14 +58,21 @@ angular.module("allDirectives", ["ngSanitize"])
 				}
 			}
 
-			for (card in scope.hand) {
-				scope.hand[card].value = faceCards(scope.hand[card].value);
-				//console.log(scope.hand[card].value);
-				//scope.hand[card].suit = suitAndColor(scope.hand[card].suit);
-				scope.hand[card] = suitAndColor(scope.hand[card]);
-				//console.log(scope.hand[card]);
+			// format card to display properly
+			function formatCard(arr) {
+				for (card in arr) {
+					arr[card].value = faceCards(arr[card].value);
+					//console.log(scope.hand[card].value);
+					//scope.hand[card].suit = suitAndColor(scope.hand[card].suit);
+					arr[card] = suitAndColor(arr[card]);
+					//console.log(scope.hand[card]);
+				}
 			}
-
+			
+			scope.$watch('hand', function(newValue, oldValue) {
+				formatCard(newValue);
+			});
+			
 		}
 
 		return {

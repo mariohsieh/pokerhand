@@ -68,31 +68,34 @@ main section {
   main section .playerDisplay {
     padding-top: 75px;
     vertical-align: top; }
-main .infoBox * {
-  display: inline-block;
-  margin: 0 25px;
-  vertical-align: top;
-  height: 75px; }
-main .infoBox .checkmark {
-  border-radius: 100%;
-  width: 75px;
-  color: #fff;
-  background-color: green;
-  font-size: 4.5em;
-  visibility: hidden; }
-main .infoBox .winIcon {
-  visibility: visible; }
-main .infoBox h2 {
-  padding-top: 10px;
-  vertical-align: middle; }
-main .infoBox button {
-  background-color: #000;
-  border-radius: 100%;
-  width: 75px;
-  padding: 0;
-  border: none;
-  color: #fff;
-  font-size: 1.2em; }
-main .infoBox button:active {
-  background-color: #31b404;
-  color: #000; }
+main .infoBox {
+  margin-top: 8px; }
+  main .infoBox * {
+    display: inline-block;
+    margin: 0 25px;
+    vertical-align: top;
+    height: 75px; }
+  main .infoBox .checkmark {
+    border-radius: 100%;
+    width: 75px;
+    color: #fff;
+    background-color: green;
+    font-size: 4.5em;
+    visibility: hidden; }
+  main .infoBox .winIcon {
+    visibility: visible; }
+  main .infoBox h2 {
+    width: 300px;
+    padding-top: 10px;
+    vertical-align: middle; }
+  main .infoBox button {
+    background-color: #000;
+    border-radius: 100%;
+    width: 75px;
+    padding: 0;
+    border: none;
+    color: #fff;
+    font-size: 1.2em; }
+  main .infoBox button:active {
+    background-color: #31b404;
+    color: #000; }

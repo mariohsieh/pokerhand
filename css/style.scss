@@ -75,6 +75,7 @@ main {
 	}	
 	
 	.infoBox {
+		margin-top: 8px;
 		* {
 			display: inline-block;
 			margin: 0 25px;
@@ -93,6 +94,7 @@ main {
 			visibility: visible;
 		}
 		h2 {
+			width: 300px;
 			padding-top: 10px;
 			vertical-align: middle;
 		}

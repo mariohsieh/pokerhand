@@ -42,14 +42,11 @@ angular.module("allControllers", [])
 
 		$scope.winner = CompareHand($scope.p1.info, $scope.p2.info);
 		//console.log($scope.winner);
+		
 		}
 
 		// start game
 		$scope.gameStart();
-/*
-		$scope.$watch('$scope.p1.hand', function(newValue,oldValue) {
-			console.log(newValue);
-		});
-*/
+		
 	});
 

@@ -24,7 +24,8 @@
 		<section class="infoBox"> <!-- game info -->
 			<div class="checkmark" ng-class="{'winIcon': winner == true}">&#x2713;</div>
 			<h2>{{p1.info.type}}</h2>
-			<button class="center pointer" data-deal-cards>deal</button>
+			<!--<button class="center pointer" data-deal-button>deal</button>-->
+			<deal-button></deal-button>
 			<h2>{{p2.info.type}}</h2>
 			<div class="checkmark" ng-class="{'winIcon': winner == false}">&#x2713;</div>
 		</section>
