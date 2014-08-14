@@ -41,10 +41,14 @@ angular.module("allControllers", [])
 			console.log($scope.p2.info);
 
 			var compareHand = new CompareHand($scope.p1.info, $scope.p2.info);
-
 		}
 
 		// start game
 		$scope.gameStart();
+/*
+		$scope.$watch('$scope.p1.hand', function(newValue,oldValue) {
+			console.log(newValue);
+		});
+*/
 	});
 

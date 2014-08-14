@@ -17,17 +17,17 @@ angular.module("allControllers", [])
 
 		/* for testing 
 			$scope.p1.hand = [
-				{"suit": "Heart", "value": 3},
-				{"suit": "Spade", "value": 3},
-				{"suit": "Spade", "value": 10},
-				{"suit": "Heart", "value": 3},
-				{"suit": "Club", "value": 14}
+				{"suit": "Heart", "value": 2},
+				{"suit": "Spade", "value": 8},
+				{"suit": "Spade", "value": 9},
+				{"suit": "Heart", "value": 11},
+				{"suit": "Club", "value": 12}
 			];
 			$scope.	p2.hand = [
-				{"suit": "Diamond", "value": 5},
-				{"suit": "Heart", "value": 14},
-				{"suit": "Spade", "value": 5},
-				{"suit": "Diamond", "value": 5},
+				{"suit": "Diamond", "value": 4},
+				{"suit": "Heart", "value": 5},
+				{"suit": "Spade", "value": 6},
+				{"suit": "Diamond", "value": 11},
 				{"suit": "Heart", "value": 13}
 			];	 
 		*/
@@ -42,9 +42,17 @@ angular.module("allControllers", [])
 
 			var compareHand = new CompareHand($scope.p1.info, $scope.p2.info);
 
+			$scope.$watch('$scope.p1.hand', function(newValue,oldValue) {
+				console.log(newValue);
+			});
 		}
 
 		// start game
 		$scope.gameStart();
+/*
+		$scope.$watch('$scope.p1.hand', function(newValue,oldValue) {
+			console.log(newValue);
+		});
+*/
 	});
 

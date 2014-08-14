@@ -1,14 +1,12 @@
-angular.module("allDirectives", [])
+angular.module("allDirectives", ["ngSanitize"])
 
 	.directive("dealCards", function() {
 		
 		function link(scope, elem, attr) {
 				
 			elem.on('click', function() {
-				
 				//start game on click
 				scope.gameStart();
-				//console.log(scope.p1.hand);	
 			});		
 		}
 		
@@ -25,11 +23,10 @@ angular.module("allDirectives", [])
 			//console.log(scope.hand);
 /*		
 			scope.$watch('hand', function(newValue, oldValue) {
-				console.log(newValue);
-				hand = newValue;
+				console.log(newValue, oldValue);
+				//hand = newValue;
 			});
-*/		
-;
+*/	
 			function faceCards(num) {
 				switch(num) {
 					case 11:
@@ -49,9 +46,28 @@ angular.module("allDirectives", [])
 				}
 			}
 			
+			function suitAndColor(suit) {
+				switch(suit) {
+					case 'Club':
+						suit = '&clubs;';
+						return suit;
+					case 'Diamond':
+						suit = '&diams;';
+						return suit;
+					case 'Heart':
+						suit = '&hearts;';
+						return suit;
+					case 'Spade':
+						suit = '&spades;';
+						return suit;
+				}
+			}
+
 			for (card in scope.hand) {
 				scope.hand[card].value = faceCards(scope.hand[card].value);
 				//console.log(scope.hand[card].value);
+				scope.hand[card].suit = suitAndColor(scope.hand[card].suit);
+				//console.log(scope.hand[card].suit);
 			}
 			
 		}
@@ -62,8 +78,8 @@ angular.module("allDirectives", [])
 			scope: {
 				hand: '=',
 			},
-			//template: '<ul><li class="inlineBlock hand" ng-repeat="card in hand"><span>{{card.value}}</span></li></ul>',
-			templateUrl: 'views/cardDisplay.html',
+			template: '<ul><li class="inlineBlock hand" ng-repeat="card in hand"><p>{{card.value}}</p><p ng-bind-html="card.suit">{{card.suit}}</p></li></ul>',
+			//templateUrl: 'views/cardDisplay.html',
 			link: link
 		}
 	});
